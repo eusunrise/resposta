@@ -1,5 +1,56 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+
+int contarVogais(const char *frase) {
+    int contador = 0;
+    char c;
+
+    for (int i = 0; frase[i] != '\0'; i++) {
+        c = tolower(frase[i]);
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            contador++;
+        }
+    }
+
+    return contador;
+}
+
+void capitalizarPalavras(char *frase) {
+    int i = 0;
+
+    if (frase[i] >= 'a' && frase[i] <= 'z') {
+        frase[i] = frase[i] - 32;
+    }
+    while (frase[i] != '\0') {
+        if (frase[i] == ' ' && frase[i + 1] >= 'a' && frase[i + 1] <= 'z') {
+            frase[i + 1] = frase[i + 1] - 32;
+        }
+        i++;
+    }
+}
+
+int main() {
+    char frase[200];
+
+    printf("Digite uma frase: ");
+    fgets(frase, sizeof(frase), stdin);
+
+    frase[strcspn(frase, "\n")] = '\0';
+
+    printf("\nFrase digitada: %s\n", frase);
+
+    int totalVogais = contarVogais(frase);
+    printf("Número de vogais: %d\n", totalVogais);
+
+    capitalizarPalavras(frase);
+    printf("Frase com as palavras iniciando em maiúsculas: %s\n", frase);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
 
 #define MAX 100
 #define TAM_STRING 100
@@ -21,7 +72,7 @@ int buscaBinariaPorTitulo(struct Livro livros[], int n, const char *titulo);
 void preencherVetor(struct Livro livros[], int *n) {
     printf("Quantos livros deseja cadastrar? ");
     scanf("%d", n);
-    getchar(); // limpa o buffer
+    getchar();
 
     for (int i = 0; i < *n; i++) {
         printf("\nLivro %d:\n", i + 1);
