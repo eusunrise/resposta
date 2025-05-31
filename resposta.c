@@ -1,3 +1,5 @@
+// 1 QUESTÃO
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -48,6 +50,8 @@ int main() {
 
     return 0;
 }
+
+// 2 QUESTÃO
 
 #include <stdio.h>
 #include <string.h>
